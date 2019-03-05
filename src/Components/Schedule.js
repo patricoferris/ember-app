@@ -4,9 +4,53 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
 
 const testData = [
+  {
+    title: 'Super Awesome Event 1',
+    location: 'Location TBD',
+    description: 'Super awesome mega cool thing that\'s happening somewhere!'
+  },
+  {
+    title: 'Super Awesome Event 2',
+    location: 'Computer Lab',
+    description: 'Nothing fun happening here'
+  },
+  {
+    title: 'Super Awesome Event 3',
+    location: 'The Moon',
+    description: 'Once in a lifetime - no return trip'
+  },
+  {
+    title: 'Super Awesome Event 1',
+    location: 'Location TBD',
+    description: 'Super awesome mega cool thing that\'s happening somewhere!'
+  },
+  {
+    title: 'Super Awesome Event 2',
+    location: 'Computer Lab',
+    description: 'Nothing fun happening here'
+  },
+  {
+    title: 'Super Awesome Event 3',
+    location: 'The Moon',
+    description: 'Once in a lifetime - no return trip'
+  },
+  {
+    title: 'Super Awesome Event 1',
+    location: 'Location TBD',
+    description: 'Super awesome mega cool thing that\'s happening somewhere!'
+  },
+  {
+    title: 'Super Awesome Event 2',
+    location: 'Computer Lab',
+    description: 'Nothing fun happening here'
+  },
+  {
+    title: 'Super Awesome Event 3',
+    location: 'The Moon',
+    description: 'Once in a lifetime - no return trip'
+  },
   {
     title: 'Super Awesome Event 1',
     location: 'Location TBD',
@@ -55,11 +99,10 @@ function Item(props, data) {
 }
 
 class Schedule extends React.Component {
-  
   render() {
     const { classes } = this.props;
     return (
-      <List>
+      <List style={{height: '100%', overflow: 'auto'}}>
         {
           testData.map(data => Item(this.props, data))
         }

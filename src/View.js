@@ -7,6 +7,11 @@ import MusicView from './Components/Music';
 import MapView from './Components/Map';
 
 const ViewDiv = styled.div`
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 56px;
+  bottom: 56px;
 `;
 
 class View extends Component {
