@@ -7,7 +7,6 @@ import MusicView from './Components/Music';
 import MapView from './Components/Map';
 
 const ViewDiv = styled.div`
-  padding: 100px 100px;
 `;
 
 class View extends Component {
