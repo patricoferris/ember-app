@@ -3,7 +3,9 @@
   "name": "Pembroke May Ball 2019",
   "icons": [
     {
-      "src": "Logo-3.jpg"
+        "src": "img/icon.jpg",
+        "size": "192x192",
+        "type": "image/jpg"
     }
   ],
   "start_url": ".",
