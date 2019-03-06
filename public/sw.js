@@ -12,7 +12,7 @@ const urlB64ToUint8Array = base64String => {
 }
 
 const saveSubscription = async subscription => {
-  const SERVER_URL = process.env.REACT_APP_SUBSCRIBE_ENDPOINT;
+  const SERVER_URL = "https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing"
   const response = await fetch(SERVER_URL, {
     method: 'post',
     headers: {
