@@ -18,7 +18,6 @@ const check = () => {
 const registerServiceWorker = async () => {
   console.log("registering...")
   const swRegistration = await navigator.serviceWorker.register('sw.js')
-  console.log(swRegistration)
   return swRegistration
 }
 
