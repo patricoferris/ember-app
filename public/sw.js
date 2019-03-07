@@ -47,7 +47,7 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         });
-      }).catch(err => console.error(err))
+      })
     })
   )
 }) 
