@@ -9,3 +9,8 @@ html, body {
   height: 100vh;
   overflow: hidden;
 }
+
+.list-class {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}

@@ -102,7 +102,7 @@ class Schedule extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <List style={{height: '100%', overflow: 'auto'}}>
+      <List className={'list-class'} style={{height: '100%', overflow: 'auto'}}>
         {
           testData.map(data => Item(this.props, data))
         }
