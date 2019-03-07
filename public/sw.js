@@ -35,7 +35,7 @@ self.addEventListener('push', function(event) {
 // Caching fetch requests
 self.addEventListener('fetch', event => {
   console.log('Handling fetch event for', event.request.url);
-
+  // TODO: Eviction policy - response timestamp?  
   event.respondWith(
     caches.open('schedule').then(cache => {
       return cache.match(event.request).then(response => {
