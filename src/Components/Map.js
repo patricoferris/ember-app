@@ -24,7 +24,7 @@ class Map extends React.Component {
       center: [52.20202, 0.12028],
       zoom: 18,
       layers: [
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }),
       ]
