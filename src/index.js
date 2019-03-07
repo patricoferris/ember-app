@@ -41,7 +41,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 main();
 
-//serviceWorker.register();
+serviceWorker.register();
 
 
 function urlB64ToUint8Array(base64String) {

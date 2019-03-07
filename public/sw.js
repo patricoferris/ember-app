@@ -32,6 +32,28 @@ self.addEventListener('push', function(event) {
   }
 })
 
+// Caching fetch requests
+self.addEventListener('fetch', event => {
+  console.log('Handling fetch event for', event.request.url);
+
+  event.respondWith(
+    caches.open('schedule').then(cache => {
+      return cache.match(event.request).then(response => {
+        if (response) {
+          console.log('Found it in the cache')
+          return response
+        }
+
+        console.log('Fetching event from the network...')
+        return fetch(event.request).then(networkResponse => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      }).catch(err => console.error(err))
+    })
+  )
+}) 
+
 const showLocalNotification = (title, body, swRegistration) => {
   const options = {
     body
