@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -38,6 +39,14 @@ const styles = {
   },
 };
 
+const NoRubber = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+`;
+
 class App extends Component {
   state = {
     value: 'schedule',
@@ -52,16 +61,18 @@ class App extends Component {
     const { value } = this.state;
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <Header classForAppBar={classes.header}/>
-        <View tag={this.state.value}/>
-        <BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.bottom}>
-          <BottomNavigationAction label="Schedule" value='schedule' icon={<ScheduleIcon />} />
-          <BottomNavigationAction label="Map" value='map' icon={<LocationOnIcon />} />
-          <BottomNavigationAction label="Food" value='foodAndDrink' icon={<FastfoodIcon />} />
-          <BottomNavigationAction label="Music" value='music' icon={<MusicIcon />} />
-        </BottomNavigation>
-      </MuiThemeProvider>
+      <NoRubber>
+        <MuiThemeProvider theme={theme}>
+          <Header classForAppBar={classes.header}/>
+          <View tag={this.state.value}/>
+          <BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.bottom}>
+            <BottomNavigationAction label="Schedule" value='schedule' icon={<ScheduleIcon />} />
+            <BottomNavigationAction label="Map" value='map' icon={<LocationOnIcon />} />
+            <BottomNavigationAction label="Food" value='foodAndDrink' icon={<FastfoodIcon />} />
+            <BottomNavigationAction label="Music" value='music' icon={<MusicIcon />} />
+          </BottomNavigation>
+        </MuiThemeProvider>
+      </NoRubber>
     );
   }
 }
