@@ -32,9 +32,24 @@ const requestNotificationPermission = async () => {
   }
 }
 const main = async () => {
-  check()
-  const permission = await requestNotificationPermission()
-  const swRegistration = await registerServiceWorker()
+  //check()
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(reg) {
+      console.log('Service Worker Registered!', reg);
+      reg.pushManager.getSubscription().then(async sub => {
+        if (sub === null) {
+          await requestNotificationPermission()
+          console.log('Not subscribed to push service!');
+        } else {
+          // We have a subscription, update the database
+          console.log('Subscription object: ', sub);
+        }
+      });
+    })
+     .catch(function(err) {
+      console.log('Service Worker registration failed: ', err);
+    });
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
