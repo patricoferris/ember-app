@@ -16,7 +16,6 @@ const check = () => {
 }
 
 const registerServiceWorker = async () => {
-  console.log("registering...")
   const swRegistration = await navigator.serviceWorker.register('sw.js')
   return swRegistration
 }
@@ -38,10 +37,7 @@ const main = async () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
 main();
-
-// serviceWorker.register();
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);

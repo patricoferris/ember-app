@@ -116,7 +116,8 @@ class Schedule extends React.Component {
   }
 
   async getSchedule() {
-    let data = fetch(SCHEDULE_ENDPOINT).then(response => {
+    fetch(SCHEDULE_ENDPOINT).then(response => {
+      console.log("fetching...")
       return response.json();
     }).then(json => {
       this.setState({

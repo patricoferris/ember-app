@@ -43,7 +43,16 @@ const styles = {
 class App extends Component {
   state = {
     value: 'schedule',
+    loading: false
   };
+
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      });
+    }, 3000)
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -52,9 +61,8 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
-    return (
-      <MuiThemeProvider theme={theme}>
+    return this.state.loading ? <div>Loading...</div> : (
+        <MuiThemeProvider theme={theme}>
         <Header classForAppBar={classes.header}/>
         <View tag={this.state.value}/>
         <BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.bottom}>
@@ -64,7 +72,7 @@ class App extends Component {
           <BottomNavigationAction label="Music" value='music' icon={<MusicIcon />} />
         </BottomNavigation>
       </MuiThemeProvider>
-    );
+      );
   }
 }
 
