@@ -37,8 +37,8 @@ class View extends Component {
   render() {
     const ViewToRender = this.state[this.props.tag || 'schedule'];
     return (
-      <ViewDiv id='view'>
-        <ViewToRender/>
+      <ViewDiv>
+        <ViewToRender id='view'/>
       </ViewDiv>
     );
   }
