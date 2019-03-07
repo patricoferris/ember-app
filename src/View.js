@@ -5,14 +5,13 @@ import ScheduleView from './Components/Schedule';
 import FoodAndDrinkView from './Components/FoodAndDrink';
 import MusicView from './Components/Music';
 import MapView from './Components/Map';
-
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 const ViewDiv = styled.div`
-  position: relative;
-  left: 0px;
-  right: 0px;
-  height: calc(100vh - 112px);
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  position: fixed;	
+  left: 0px;	 
+  right: 0px;	
+  top: 56px;	  
+  bottom: 56px;	  
 `;
 
 class View extends Component {
@@ -26,10 +25,19 @@ class View extends Component {
     }
   }
 
+  componentDidMount() {
+    this.targetElement = document.getElementById('view');
+    disableBodyScroll(this.targetElement);
+  }
+
+  componentWillUnmount() {
+    clearAllBodyScrollLocks();
+  }
+
   render() {
     const ViewToRender = this.state[this.props.tag || 'schedule'];
     return (
-      <ViewDiv>
+      <ViewDiv id='view'>
         <ViewToRender/>
       </ViewDiv>
     );
