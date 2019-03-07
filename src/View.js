@@ -7,11 +7,12 @@ import MusicView from './Components/Music';
 import MapView from './Components/Map';
 
 const ViewDiv = styled.div`
-  position: fixed;
+  position: relative;
   left: 0px;
   right: 0px;
-  top: 56px;
-  bottom: 56px;
+  height: calc(100vh - 112px);
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 `;
 
 class View extends Component {

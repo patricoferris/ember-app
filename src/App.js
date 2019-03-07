@@ -32,7 +32,7 @@ const styles = {
     right: '0px'
   },
   bottom: {
-    position: 'absolute',
+    position: 'relative',
     left: '0px',
     right: '0px',
     bottom: '0px'
@@ -40,11 +40,9 @@ const styles = {
 };
 
 const NoRubber = styled.div`
-  position: fixed;
+  position: absolute;
   height: 100vh;
-  width: 100vw;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
 `;
 
 class App extends Component {

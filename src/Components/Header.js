@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 class Header extends Component {
   render() {
     return (
-      <AppBar position="static" color="primary" className={this.props.classForAppBar}>
+      <AppBar position="relative" color="primary" className={this.props.classForAppBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit">
             ember
