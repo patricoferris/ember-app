@@ -25,7 +25,7 @@ self.addEventListener('activate', function (event) {
 
 // Fetch request Caching
 self.addEventListener('fetch', event => { 
-  
+  console.log("Fetch Cache")
   const cacheVersion = 'v1';
   const cacheName = `pemball-cache-${cacheVersion}`;
   

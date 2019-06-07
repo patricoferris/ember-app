@@ -84,7 +84,7 @@ const saveSubscription = async subscription => {
 }
 
 async function main() {
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
+  if ('serviceWorker' in navigator) {
     console.log('Service Worker and Push is supported');
 
     navigator.serviceWorker.register('sw.js')
