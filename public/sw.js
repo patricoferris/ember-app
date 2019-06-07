@@ -53,20 +53,6 @@ self.addEventListener('fetch', event => {
   )
 }) 
 
-
-// const saveSubscription = async subscription => {
-//   const SERVER_URL = "https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing"
-//   fetch(SERVER_URL, {
-//     method: 'post',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(subscription),
-//   }).then(response => {
-//     return response.json();
-//   })
-// }
-
 self.addEventListener('push', function(event) {
   if (event.data) {
     showLocalNotification("Pembroke May Ball 2019", event.data.text(), self.registration)
@@ -83,21 +69,3 @@ const showLocalNotification = (title, body, swRegistration) => {
   };
   swRegistration.showNotification(title, options);
 };
-
-
-// self.addEventListener('install', async () => {
-//   // This will be called only once when the service worker is activated.
-//   try {
-//     const applicationServerKey = urlB64ToUint8Array(
-//       'BNe5S6jSHCP2aHh1og9OYj-i_PnLOBEAw3WLiXWx7v-sx1nR_sqTXxMYga2dzlDl8T7u5VyNLx2UyAt7VmMDGsE'
-//     )
-//     const options = { applicationServerKey, userVisibleOnly: true }
-//     const subscription = await self.registration.pushManager.subscribe(options)
-//     const response = await saveSubscription(subscription);
-//     console.log("Sub: ", JSON.stringify(subscription))
-//     console.log(response);
-//   } catch (err) {
-//     console.log('Error', err)
-//   }
-//   console.log("Adding fetch")
-// })
