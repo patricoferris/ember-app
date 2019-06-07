@@ -7,69 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const SCHEDULE_ENDPOINT = 'https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing/getSchedule';
 
-const testData = [
-  {
-    title: 'Super Awesome Event 1',
-    location: 'Location TBD',
-    description: 'Super awesome mega cool thing that\'s happening somewhere!'
-  },
-  {
-    title: 'Super Awesome Event 2',
-    location: 'Computer Lab',
-    description: 'Nothing fun happening here'
-  },
-  {
-    title: 'Super Awesome Event 3',
-    location: 'The Moon',
-    description: 'Once in a lifetime - no return trip'
-  },
-  {
-    title: 'Super Awesome Event 1',
-    location: 'Location TBD',
-    description: 'Super awesome mega cool thing that\'s happening somewhere!'
-  },
-  {
-    title: 'Super Awesome Event 2',
-    location: 'Computer Lab',
-    description: 'Nothing fun happening here'
-  },
-  {
-    title: 'Super Awesome Event 3',
-    location: 'The Moon',
-    description: 'Once in a lifetime - no return trip'
-  },
-  {
-    title: 'Super Awesome Event 1',
-    location: 'Location TBD',
-    description: 'Super awesome mega cool thing that\'s happening somewhere!'
-  },
-  {
-    title: 'Super Awesome Event 2',
-    location: 'Computer Lab',
-    description: 'Nothing fun happening here'
-  },
-  {
-    title: 'Super Awesome Event 3',
-    location: 'The Moon',
-    description: 'Once in a lifetime - no return trip'
-  },
-  {
-    title: 'Super Awesome Event 1',
-    location: 'Location TBD',
-    description: 'Super awesome mega cool thing that\'s happening somewhere!'
-  },
-  {
-    title: 'Super Awesome Event 2',
-    location: 'Computer Lab',
-    description: 'Nothing fun happening here'
-  },
-  {
-    title: 'Super Awesome Event 3',
-    location: 'The Moon',
-    description: 'Once in a lifetime - no return trip'
-  },
-]
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -81,10 +18,16 @@ const styles = theme => ({
   },
 });
 
+function dateToTime(date) {
+  const regex = /T\d\d:\d\d/g;
+  let arr = date.match(regex);
+  return arr[0].slice(1);
+}
+
 function Item(props, data) {
   const { classes } = props;
   return (
-    <ListItem alignItems="flex-start" divider>
+    <ListItem key={data.scheduleId} alignItems="flex-start" divider>
         <ListItemText
           primary={data.name}
           secondary={
@@ -92,7 +35,7 @@ function Item(props, data) {
               <Typography component="span" className={classes.inline} color="textPrimary">
                 {data.location} - &nbsp;
               </Typography>
-              {data.description}
+              {data.description} - &nbsp; {dateToTime(data.date)}
             </React.Fragment>
           }
         />
@@ -121,7 +64,7 @@ class Schedule extends React.Component {
       return response.json();
     }).then(json => {
       this.setState({
-        schedule: json.Items
+        schedule: json.Items.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
       })
     })
   }

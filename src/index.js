@@ -1,54 +1,102 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import css from './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
 const applicationServerPublicKey = 'BNe5S6jSHCP2aHh1og9OYj-i_PnLOBEAw3WLiXWx7v-sx1nR_sqTXxMYga2dzlDl8T7u5VyNLx2UyAt7VmMDGsE';
+let swRegistration;
+let isSubscribed;
+let deferredPrompt;
 
-const check = () => {
-  if (!('serviceWorker' in navigator)) {
-    throw new Error('No Service Worker support!')
-  }
-  if (!('PushManager' in window)) {
-    throw new Error('No Push API Support!')
-  }
-}
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  console.log("Web App?");
+});
 
-const registerServiceWorker = async () => {
-  const swRegistration = await navigator.serviceWorker.register('sw.js')
-  console.log(swRegistration);
-  return swRegistration
+function initUser() {
+  if (isSubscribed) {
+    // TODO: Unsubscribe user
+  } else {
+    subscribeUser();
+  }
+
+  // Set the initial subscription value
+  swRegistration.pushManager.getSubscription()
+    .then(function(subscription) {
+      isSubscribed = !(subscription === null);
+
+      // Save to the AWS database 
+      saveSubscription(subscription);
+
+      if (isSubscribed) {
+        console.log('User IS subscribed.');
+      } else {
+        console.log('User is NOT subscribed.');
+      }
+  });
 }
 
 const requestNotificationPermission = async () => {
-  const permission = await Notification.requestPermission()
-  // value of permission can be 'granted', 'default', 'denied'
-  // granted: user has accepted the request
-  // default: user has dismissed the notification permission popup by clicking on x
-  // denied: user has denied the request.
-  if (permission !== 'granted') {
-    throw new Error('Permission not granted for Notification')
+  console.log("Awaiting....");
+  const permission = await window.Notification.requestPermission();
+  console.log("Done...");
+  if(permission !== 'granted'){
+      throw new Error('Permission not granted for Notification');
   }
 }
-const main = async () => {
-  //check()
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(function(reg) {
-      console.log('Service Worker Registered!', reg);
-      reg.pushManager.getSubscription().then(async sub => {
-        if (sub === null) {
-          await requestNotificationPermission()
-          console.log('Not subscribed to push service!');
-        } else {
-          // We have a subscription, update the database
-          console.log('Subscription object: ', sub);
-        }
-      });
+
+const subscribeUser = () => {
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey
+  })
+  .then(async function(subscription) {
+    console.log('User is subscribed.');
+    saveSubscription(subscription);
+    isSubscribed = true;
+  })
+  .catch(function(err) {
+    console.log('Failed to subscribe the user: ', err, err.message);
+  });
+}
+
+const saveSubscription = async subscription => {
+  if (subscription) {
+    const SERVER_URL = "https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing"
+    fetch(SERVER_URL, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(subscription),
+    }).then(response => {
+      return response.json();
     })
-     .catch(function(err) {
-      console.log('Service Worker registration failed: ', err);
+  } else {
+    console.log("Not yet subscribed");
+  }
+}
+
+async function main() {
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Service Worker and Push is supported');
+
+    navigator.serviceWorker.register('sw.js')
+    .then(async function(swReg) {
+      console.log('Service Worker is registered', swReg);
+
+      swRegistration = swReg;
+      await requestNotificationPermission();
+      initUser();
+    })
+    .catch(function(error) {
+      console.error('Service Worker Error', error);
     });
+  } else {
+    console.warn('Push messaging is not supported');
   }
 }
 
