@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import css from './index.css';
 import App from './App';
+
+// DON'T REMOVE THE CSS NO MATTER WHAT VS CODE SAYS :S
 
 const applicationServerPublicKey = 'BNe5S6jSHCP2aHh1og9OYj-i_PnLOBEAw3WLiXWx7v-sx1nR_sqTXxMYga2dzlDl8T7u5VyNLx2UyAt7VmMDGsE';
 let swRegistration;

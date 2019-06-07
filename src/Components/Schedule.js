@@ -11,6 +11,7 @@ import { Collapse } from '@material-ui/core';
 
 const SCHEDULE_ENDPOINT = 'https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing/getSchedule';
 
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -36,9 +37,7 @@ function Item(props, data, func, selected) {
           primary={data.name}
           secondary={
             <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textPrimary">
-                {data.location} - &nbsp;
-              </Typography>
+              {data.location} - &nbsp;
               {dateToTime(data.date)}
               <Collapse in={selected === data.scheduleId}>
                 {data.description}
@@ -123,7 +122,6 @@ class Schedule extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
         <List className={'list-class'} style={{height: '100%', overflow: 'auto'}}>
         <ListItem>
           <InputLabel style={{paddingRight: '10px'}} htmlFor="type-simple">Types</InputLabel>
@@ -162,7 +160,6 @@ class Schedule extends React.Component {
             this.state.filtered.map(data => Item(this.props, data, this.changeSelected, this.state.selected))
           }
         </List>
-      </React.Fragment>
     )
   }
 }
