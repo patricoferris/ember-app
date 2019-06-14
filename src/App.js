@@ -69,7 +69,7 @@ class App extends Component {
           <BottomNavigationAction label="Schedule" value='schedule' icon={<ScheduleIcon />} />
           <BottomNavigationAction label="Map" value='map' icon={<LocationOnIcon />} />
           <BottomNavigationAction label="Food" value='foodAndDrink' icon={<FastfoodIcon />} />
-          <BottomNavigationAction label="Music" value='music' icon={<MusicIcon />} />
+          {/* <BottomNavigationAction label="Music" value='music' icon={<MusicIcon />} /> */}
         </BottomNavigation>
       </MuiThemeProvider>
       );

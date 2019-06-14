@@ -20,11 +20,10 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 function initUser() {
   if (isSubscribed) {
-    // TODO: Unsubscribe user
+    console.log("Sub?");
   } else {
     subscribeUser();
   }
-
   // Set the initial subscription value
   swRegistration.pushManager.getSubscription()
     .then(function(subscription) {
@@ -68,6 +67,7 @@ const subscribeUser = () => {
 
 const saveSubscription = async subscription => {
   if (subscription) {
+    console.log(JSON.stringify(subscription))
     const SERVER_URL = "https://3sx80dpay9.execute-api.eu-west-2.amazonaws.com/testing"
     fetch(SERVER_URL, {
       method: 'post',
@@ -76,6 +76,7 @@ const saveSubscription = async subscription => {
       },
       body: JSON.stringify(subscription),
     }).then(response => {
+      console.log(response);
       return response.json();
     })
   } else {

@@ -35,7 +35,7 @@ class View extends Component {
   }
 
   render() {
-    const ViewToRender = this.state[this.props.tag || 'schedule'];
+    const ViewToRender = this.state[this.props.tag || 'schedule' || 'foodAndDrink'];
     return (
       <ViewDiv>
         <ViewToRender id='view'/>
