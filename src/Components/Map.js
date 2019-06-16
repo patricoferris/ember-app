@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import L from 'leaflet';
 
+var greenIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
 class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       geoId: 0,
       yourLocation: {latLng: { lat: 52.202079, lng: 0.1201}, title: "You" },
+      marker: null,
       markersData: [
         { latLng: { lat: 52.202079, lng: 0.120094 }, title: "Bowling Green Drinks" , type: 'drink'},
         { latLng: { lat: 52.202150, lng: 0.120400 }, title: "Bowling Green Main Stage" , type: 'music'},
@@ -18,7 +28,11 @@ class Map extends React.Component {
         { latLng: { lat: 52.201604, lng: 0.118503 }, title: "Old Court Drinks" },
         { latLng: { lat: 52.201370, lng: 0.119064 }, title: "Red Buildings Drinks" },
         { latLng: { lat: 52.201370, lng: 0.118864 }, title: "Red Buildings Food" },
-        { latLng: { lat: 52.201735, lng: 0.119316 }, title: "Library Lawn" },
+        { latLng: { lat: 52.201965, lng: 0.119316 }, title: "Ivy Court Food" },
+        { latLng: { lat: 52.202055, lng: 0.119216 }, title: "Ivy Court Drink" },
+        { latLng: { lat: 52.201925, lng: 0.119016 }, title: "Ivy Court Music" },
+        { latLng: { lat: 52.201735, lng: 0.119316 }, title: "Library Lawn Food" },
+        { latLng: { lat: 52.201635, lng: 0.119116 }, title: "Library Lawn Drinks" },
         { latLng: { lat: 52.201654, lng: 0.120091 }, title: "Fellows' Garden Food" },
         { latLng: { lat: 52.201634, lng: 0.120291 }, title: "Fellows' Garden Food" },
         { latLng: { lat: 52.201604, lng: 0.120791 }, title: "Fellows' Lawn Food", type: "food"},
@@ -60,7 +74,7 @@ class Map extends React.Component {
 
     this.layer = L.layerGroup().addTo(this.map);
     this.updateMarkers(this.state.markersData);
-    this.addMarker(this.state.yourLocation);
+    this.checkLocation(this);
   }
 
   checkLocation(state) {
@@ -70,15 +84,25 @@ class Map extends React.Component {
         state.setState({
           yourLocation: {latLng: latLng, title: "You"}
         });
+        console.log(state.state.yourLocation);
+        state.addMarker(state.state.yourLocation, state);
       });
     }
   }
 
-  addMarker(marker) {
-    L.marker(
+  addMarker(marker, state) {
+
+    if (state.state.marker) {
+      this.map.removeLayer(state.state.marker);
+    }
+
+    let mark = L.marker(
       marker.latLng,
-      { title: marker.title }
+      { title: marker.title,
+        icon: greenIcon }
     ).bindPopup(marker.title).openPopup().addTo(this.layer);
+
+    state.setState({marker: mark});
   }
 
   async updateMarkers(markersData) {
@@ -91,10 +115,10 @@ class Map extends React.Component {
   }
 
   componentDidUpdate({ markersData }) {
-    // check if data has changed
-    if (this.state.markersData !== markersData) {
-      this.updateMarkers(this.state.markersData);
-    }
+    // // check if data has changed
+    // if (this.state.markersData !== markersData) {
+    //   this.updateMarkers(this.state.markersData);
+    // }
   }
 
   render() {
