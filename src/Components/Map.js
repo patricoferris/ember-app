@@ -15,7 +15,7 @@ import ferrisIcon from '../Utils/Ferris Wheel.png';
 import firstaidIcon from '../Utils/First Aid.png';
 import photoIcon from '../Utils/Photography.png';
 import skateIcon from '../Utils/Skating.png';
-import wcIcon from '../Utils/WC.png';
+import wcIcon from '../Utils/wc.png';
 
 var greenIcon = new L.Icon({
   iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
