@@ -59,11 +59,13 @@ function Item(props, data, func, updateSubs, selected, subscribed, loading, clic
           primary={data.name}
           onClick={() => func(data.scheduleId)}
           secondary={
-            <React.Fragment>
-              {data.location} - &nbsp;
-              {dateToTime(data.date)}
+            <React.Fragment style={{marginTop: '10px'}}>
+              <em>{data.location} - &nbsp;
+              {dateToTime(data.date)}</em>
               <Collapse in={selected === data.scheduleId}>
-                {data.description}
+                <div style={{textAlign: 'justify'}}>
+                  {data.description}
+                </div>
               </Collapse>
             </React.Fragment>
           }

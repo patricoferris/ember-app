@@ -33,6 +33,7 @@ const styles = {
   },
   bottom: {
     position: 'fixed',
+    borderTop: 'thin solid grey',
     left: '0px',
     right: '0px',
     bottom: '0px'
