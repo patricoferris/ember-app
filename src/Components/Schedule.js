@@ -199,7 +199,7 @@ class Schedule extends React.Component {
         {
            "scheduleId": 17,
            "date": "2019-06-20T01:00:00Z",
-           "description": "music",
+           "description": "This Corpus DJ is sure to kick off the silent disco in style!",
            "location": "Silent Disco - Orchard",
            "name": "Devan Panesar",
            "type": "DJ"
@@ -207,7 +207,7 @@ class Schedule extends React.Component {
         {
            "scheduleId": 18,
            "date": "2019-06-20T02:00:00Z",
-           "description": "music",
+           "description": "You’re guaranteed to experience some real disco treasures.",
            "location": "Silent Disco - Orchard",
            "name": "Conor Diamond",
            "type": "DJ"
@@ -215,15 +215,15 @@ class Schedule extends React.Component {
         {
            "scheduleId": 19,
            "date": "2019-06-20T03:00:00Z",
-           "description": "music",
+           "description": "Come cut some shapes to some presidential bangers.",
            "location": "Silent Disco - Orchard",
-           "name": "Mrinank Sharma",
+           "name": "Mrinank Sharma and Charlie Crisp",
            "type": "DJ"
         },
         {
            "scheduleId": 20,
            "date": "2019-06-20T04:00:00Z",
-           "description": "music",
+           "description": "Having performed at Varsity Trip's opening and final parties, King’s Bunker, Cam Fashion Show launch, Avant Gardening and Playtime, Saskia will have you dancing 'til the sun comes up!",
            "location": "Silent Disco - Orchard",
            "name": "Saskia Allan",
            "type": "DJ"
@@ -359,6 +359,8 @@ async updateSubscriptions(event, id) {
     }
     this.setState({loading: false});
     return response.json();
+  }).catch(err => {
+    this.setState({loading: false})
   })
 }
 
