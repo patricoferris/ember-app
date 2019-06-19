@@ -60,7 +60,7 @@ class FoodAndDrink extends React.Component {
         {id: 6, name: "Aromi Donuts", start: "2019-06-20T00:00:00Z", end: "2019-06-20T02:30:00Z", diet: 'V + VV', location: 'New Court', 
          description: 'Fresh donuts dusted with sugar, served by one of Cambridge’s best-loved restaurants. What more could you ask for?'},
         {id: 7, name: "Aromi Fried Pizza", start: "2019-06-19T21:45:00Z", end: "2019-06-20T00:45:00Z", diet: 'V + VV', location: 'New Court', 
-         description: "Everyone's May Ball favourite is back to offer a new take on their classic Sicilian pizzas. Try these fluffy, fried dough bases topped with fresh ingredients and you'll appreciate pizza in a whole new way."},
+         description: "Everyone's May Ball favourite is back to offer a new take on their classic Sicilian pizzas. Try these fluffy, fried dough bases topped with fresh ingredients and you'll appreciate pizza in a whole new way. There will also be two types of Arancini Balls!"},
         {id: 8, name: "Anna Mae's Mac 'n' Cheese", start: "2019-06-19T21:00:00Z", end: "2019-06-19T23:00:00Z", diet: 'V', location: 'Foundress', 
          description: "Back by popular demand, Anna Mae’s are serving up hearty portions of their American-style mac’n’cheese. Try it before it’s all gone!"},
         {id: 9, name: "Wildefeast Pork Burgers", start: "2019-06-19T21:00:00Z", end: "2019-06-19T23:30:00Z", location: 'Foundress', 

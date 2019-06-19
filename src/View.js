@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // Local Imports
 import ScheduleView from './Components/Schedule';
 import FoodAndDrinkView from './Components/FoodAndDrink';
+import WasteView from './Components/Waste';
 import MusicView from './Components/Music';
 import MapView from './Components/Map';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
@@ -20,6 +21,7 @@ class View extends Component {
     this.state = {
       schedule: ScheduleView,
       foodAndDrink: FoodAndDrinkView,
+      waste: WasteView,
       music: MusicView,
       map: MapView,
     }

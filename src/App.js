@@ -6,7 +6,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import GradeIcon from '@material-ui/icons/Grade';
+import InfoIcon from '@material-ui/icons/Info';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 // Local imports
 import Header from './Components/Header';
@@ -67,10 +68,11 @@ class App extends Component {
         <Header classForAppBar={classes.header}/>
         <View tag={this.state.value}/>
         <BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.bottom}>
-          <BottomNavigationAction label="Entertainment" value='schedule' icon={<ScheduleIcon />} />
+          <BottomNavigationAction label="Ents" value='schedule' icon={<ScheduleIcon />} />
           <BottomNavigationAction label="Map" value='map' icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Waste" value='waste' icon={<DeleteIcon />} />
           <BottomNavigationAction label="Food" value='foodAndDrink' icon={<FastfoodIcon />} />
-          <BottomNavigationAction label="Thanks" value='music' icon={<GradeIcon />} />
+          <BottomNavigationAction label="About" value='music' icon={<InfoIcon />} />
         </BottomNavigation>
       </MuiThemeProvider>
       );
